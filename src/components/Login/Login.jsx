@@ -32,7 +32,7 @@ const Login = () => {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div
-            className="bg-transparent transition duration-600 py-8 px-4 shadow-md hover:shadow-xl sm:rounded-lg sm:px-10"
+            className="bg-transparent  transition duration-600 py-8 px-4 shadow-md hover:shadow-xl sm:rounded-lg sm:px-10"
             style={{ backdropFilter: "blur(5px)" }}
           >
             <form className="space-y-6">

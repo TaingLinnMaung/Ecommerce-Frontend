@@ -25,10 +25,11 @@ const SignUp = () => {
   return (
     <>
       <div
-        className="h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-60"
+        className="h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-60 px-5 sm:bg-cover "
         style={{
           backgroundImage: `url(${backgroundImg2})`,
-          backgroundSize: "cover", // Ensures the image covers the entire div
+          // Ensures the image covers the entire div
+
           backgroundPosition: "center", // Centers the image
           backgroundRepeat: "no-repeat",
         }}
@@ -133,6 +134,20 @@ const SignUp = () => {
                       <RxAvatar className="h-8 w-8 text-gray-300" />
                     )}
                   </span>
+                  <label
+                    htmlFor="file-input"
+                    className="ml-5 flex items-center justify-center px-4 py-2 border border-stone-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-transparent hover:border-stone-200 hover:text-gray-600"
+                  >
+                    <span>Upload a file</span>
+                    <input
+                      type="file"
+                      name="avatar"
+                      id="file-input"
+                      accept=".jpg,.jpeg,.png"
+                      onChange={handleFileInputChange}
+                      className="sr-only"
+                    />
+                  </label>
                 </div>
               </div>
               <div className={`${styles.normalFlex} w-full`}>
