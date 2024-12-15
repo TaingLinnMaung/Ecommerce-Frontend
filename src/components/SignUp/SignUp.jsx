@@ -3,7 +3,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa6";
 import styles from "../../styles/styles";
 import { useNavigate } from "react-router-dom";
-import backgroundImg from "../../assets/image/loginBackground.jpg";
+import backgroundImg2 from "../../assets/image/loginBackground2.jpg";
 import { RxAvatar } from "react-icons/rx";
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -27,14 +27,14 @@ const SignUp = () => {
       <div
         className="h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-60"
         style={{
-          backgroundImage: `url(${backgroundImg})`,
+          backgroundImage: `url(${backgroundImg2})`,
           backgroundSize: "cover", // Ensures the image covers the entire div
           backgroundPosition: "center", // Centers the image
           backgroundRepeat: "no-repeat",
         }}
       >
         <div className="sm:mx-auto sm:w-full sm:max-w-md ">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-stone-300">
             Register New Account
           </h2>
         </div>
@@ -48,7 +48,7 @@ const SignUp = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Full Name
                 </label>
@@ -61,14 +61,14 @@ const SignUp = () => {
                     required
                     onChange={(e) => setName(e.target.value)}
                     value={name}
-                    className="appearance-none block w-full px-3 py-2 border text-gray-500 bg-transparent border-indigo-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border text-gray-300 bg-transparent shadow-sm border-stone-500 rounded-md  placeholder-stone-400 focus:outline-none focus:ring-stone-500 focus:border-stone-600 sm:text-sm"
                   />
                 </div>
               </div>
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Email address
                 </label>
@@ -81,14 +81,14 @@ const SignUp = () => {
                     required
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
-                    className="appearance-none block w-full px-3 py-2 border text-gray-500 bg-transparent border-indigo-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border text-gray-300 bg-transparent shadow-sm border-stone-500 rounded-md  placeholder-stone-400 focus:outline-none focus:ring-stone-500 focus:border-stone-600 sm:text-sm"
                   />
                 </div>
               </div>
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-300"
                 >
                   Password
                 </label>
@@ -100,16 +100,16 @@ const SignUp = () => {
                     required
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                    className="appearance-none block w-full px-3 py-2 border bg-transparent text-gray-500 border-indigo-200 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border text-gray-300 bg-transparent shadow-sm border-stone-500 rounded-md  placeholder-stone-400 focus:outline-none focus:ring-stone-500 focus:border-stone-600 sm:text-sm"
                   />
                   {visible ? (
                     <IoEyeSharp
-                      className="absolute top-2 right-2 size-5"
+                      className="absolute top-2 right-2 size-5 text-gray-300"
                       onClick={() => setVisible(false)}
                     />
                   ) : (
                     <FaEyeSlash
-                      className="absolute top-2 right-2 size-5"
+                      className="absolute top-2 right-2 size-5 text-gray-300"
                       onClick={() => setVisible(true)}
                     />
                   )}
@@ -127,10 +127,10 @@ const SignUp = () => {
                       <img
                         src={URL.createObjectURL(avater)}
                         alt="avater"
-                        className="h-full w-full object-cover rounded-full"
+                        className="h-full w-full object-cover rounded-full text-gray-300"
                       />
                     ) : (
-                      <RxAvatar className="h-8 w-8" />
+                      <RxAvatar className="h-8 w-8 text-gray-300" />
                     )}
                   </span>
                 </div>
@@ -138,7 +138,7 @@ const SignUp = () => {
               <div className={`${styles.normalFlex} w-full`}>
                 <button
                   type="submit"
-                  className=" w-full text-gray-50 px-5 py-3 rounded-lg transition delay-100 bg-indigo-600 hover:bg-indigo-700"
+                  className=" w-full text-gray-50 px-5 py-3 rounded-lg transition delay-0 bg-amber-500 hover:bg-amber-600"
                 >
                   Submit
                 </button>
@@ -147,7 +147,7 @@ const SignUp = () => {
                 Already have an account? &nbsp;
                 <span
                   onClick={handleGoToLogin}
-                  className="text-indigo-700 cursor-pointer select-none"
+                  className="text-indigo-500 cursor-pointer select-none"
                 >
                   Login
                 </span>
