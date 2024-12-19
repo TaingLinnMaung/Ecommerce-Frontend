@@ -5,22 +5,50 @@ import styles from "../../styles/styles";
 import { useNavigate } from "react-router-dom";
 import backgroundImg2 from "../../assets/image/loginBackground2.jpg";
 import { RxAvatar } from "react-icons/rx";
+import useUserStore from "../../store/userStore";
+import ReactLoading from "react-loading";
+
 const SignUp = () => {
+  const userStore = useUserStore();
+
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avater, setAvater] = useState(null);
   const [name, setName] = useState("");
   const navigate = useNavigate();
+
+  const prepareFormData = (data) => {
+    const newForm = new FormData();
+    newForm.append("email", email);
+    newForm.append("file", avater);
+    newForm.append("name", name);
+    newForm.append("password", password);
+    return newForm;
+  };
   const handleGoToLogin = () => {
     navigate("/login");
   };
-  const handleSubmit = () => {
-    console.log("hello");
-  };
+
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     setAvater(file);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let newForm = prepareFormData();
+    try {
+      setIsLoading(true);
+      let res = await userStore.createUser(newForm);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <>
@@ -45,7 +73,7 @@ const SignUp = () => {
             className="bg-transparent transition duration-600 py-8 px-4 shadow-md hover:shadow-xl sm:rounded-lg sm:px-10"
             style={{ backdropFilter: "blur(5px)" }}
           >
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -153,9 +181,18 @@ const SignUp = () => {
               <div className={`${styles.normalFlex} w-full`}>
                 <button
                   type="submit"
-                  className=" w-full text-gray-50 px-5 py-3 rounded-lg transition delay-0 bg-amber-500 hover:bg-amber-600"
+                  className=" w-full relative text-gray-50 flex justify-center gap-4 px-5 py-3 rounded-lg transition delay-0 bg-amber-500 hover:bg-amber-600"
                 >
-                  Submit
+                  {isLoading ? (
+                    <ReactLoading
+                      className="absolute my-auto mr-[90px]  "
+                      type="spin"
+                      color="#fff"
+                      height={20}
+                      width={20}
+                    />
+                  ) : null}
+                  <div>Submit</div>
                 </button>
               </div>
               <div className={`${styles.normalFlex} text-gray-600`}>
