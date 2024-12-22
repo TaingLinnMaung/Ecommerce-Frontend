@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa6";
-import styles from "../../styles/styles";
 import { useNavigate } from "react-router-dom";
-import backgroundImg2 from "../../assets/image/loginBackground2.jpg";
 import { RxAvatar } from "react-icons/rx";
+import { ToastContainer, toast } from "react-toastify";
+import styles from "../../styles/styles";
+import backgroundImg2 from "../../assets/image/loginBackground2.jpg";
 import useUserStore from "../../store/userStore";
 import ReactLoading from "react-loading";
 
 const SignUp = () => {
-  const userStore = useUserStore();
-
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avater, setAvater] = useState(null);
   const [name, setName] = useState("");
+  const defaultToastOption = {
+    type: "success",
+    position: "top-right",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    draggable: true,
+  };
   const navigate = useNavigate();
+  const userStore = useUserStore();
 
+  const notify = (message, option) => toast(message, option);
   const prepareFormData = (data) => {
     const newForm = new FormData();
     newForm.append("email", email);
@@ -44,14 +53,24 @@ const SignUp = () => {
       setIsLoading(true);
       let res = await userStore.createUser(newForm);
       console.log(res);
+      notify("User Created Successfully", {
+        ...defaultToastOption,
+        type: "success",
+      });
+      navigate("/login");
     } catch (err) {
-      console.log(err);
+      console.log(err.response.data.message);
+      notify(err.response.data.message, {
+        ...defaultToastOption,
+        type: "error",
+      });
     } finally {
       setIsLoading(false);
     }
   };
   return (
     <>
+      <ToastContainer />
       <div
         className="h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-60 px-5 sm:bg-cover "
         style={{
