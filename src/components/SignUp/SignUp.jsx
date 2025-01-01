@@ -3,7 +3,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "../../styles/styles";
 import backgroundImg2 from "../../assets/image/loginBackground2.jpg";
 import useUserStore from "../../store/userStore";
@@ -28,7 +28,7 @@ const SignUp = () => {
   const userStore = useUserStore();
 
   const notify = (message, option) => toast(message, option);
-  const prepareFormData = (data) => {
+  const prepareFormData = () => {
     const newForm = new FormData();
     newForm.append("email", email);
     newForm.append("file", avater);
@@ -53,11 +53,13 @@ const SignUp = () => {
       setIsLoading(true);
       let res = await userStore.createUser(newForm);
       console.log(res);
-      notify("User Created Successfully", {
-        ...defaultToastOption,
-        type: "success",
-      });
-      navigate("/login");
+      if (res.code === 1) {
+        notify("User Created Successfully", {
+          ...defaultToastOption,
+          type: "success",
+        });
+      }
+      // navigate("/login");
     } catch (err) {
       console.log(err.response.data.message);
       notify(err.response.data.message, {
@@ -70,7 +72,6 @@ const SignUp = () => {
   };
   return (
     <>
-      <ToastContainer />
       <div
         className="h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 pb-60 px-5 sm:bg-cover "
         style={{
